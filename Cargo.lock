@@ -1000,6 +1000,7 @@ dependencies = [
  "shuttle-shared-db",
  "sqlx",
  "tokio",
+ "tracing",
  "url",
 ]
 

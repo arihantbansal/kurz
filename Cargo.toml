@@ -7,10 +7,11 @@ edition = "2021"
 shuttle-runtime = "0.17.0"
 rocket = { version = "0.5.0-rc.3", features = ["json"] }
 shuttle-rocket = "0.17.0"
-tokio = "1.28.2"
+tokio = "1.26.0"
 shuttle-shared-db = { version = "0.17.0", features = ["postgres"] }
-sqlx = { version = "^0.6.3", features = [ "runtime-tokio-native-tls", "postgres" ] }
+sqlx = { version = "0.6.2", features = [ "runtime-tokio-native-tls", "postgres" ] }
 nanoid = "0.4.0"
 url = "2.3.1"
 serde = "1.0.163"
+tracing = "0.1.37"
 

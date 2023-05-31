@@ -10,6 +10,7 @@ use serde::Serialize;
 use shuttle_runtime::CustomError;
 use sqlx::migrate::Migrator;
 use sqlx::{FromRow, PgPool};
+use tracing::info;
 use url::Url;
 
 struct AppState {
@@ -53,12 +54,15 @@ async fn shorten(url: String, state: &State<AppState>) -> Result<String, status:
         )
     })?;
 
+    info!("parsed_url: {}", parsed_url.as_str());
+
     sqlx::query("INSERT INTO urls(id, url) VALUES ($1, $2)")
         .bind(id)
         .bind(parsed_url.as_str())
         .execute(&state.pool)
         .await
-        .map_err(|_| {
+        .map_err(|err| {
+            info!("Error: {}", err);
             status::Custom(
                 Status::InternalServerError,
                 "something went wrong, sorry 🤷".into(),
